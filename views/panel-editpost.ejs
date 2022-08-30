@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Editors</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+    <%- include('inc/navbar') %> 
+  </div>>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+ <div class="main-side-nav" style="z-index: 99;">
+  <%- include('inc/sidebar') %>
+ </div>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Gönderi Düzenle</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Panel</a></li>
+              <li class="breadcrumb-item active">Gönderi Düzenle</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form method="POST">
+          <div class="col-md-12 my-4">
+            <div class="row"><!-- row -->
+            <div class="col-md-6">
+              <input type="hidden" name="id" value="<%= data.id %>">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1" style="width: 150px;">Başlık</span>
+                <input type="text" class="form-control" name="title" value="<%= data.title %>" required>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1" style="width: 150px;">Altbaşlık</span>
+                <input type="text" class="form-control" name="subtitle" value="<%= data.subtitle %>" required>
+              </div>
+            </div>
+          </div> <!-- /row -->
+  
+            <div class="row"><!-- row -->
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1" style="width: 150px;">Öne Çıkan Görsel</span>
+                  <input type="text" class="form-control" name="image" value="<%= data.image %>">
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1" style="width: 150px;">Link</span>
+                  <input type="text" class="form-control" name="link" value="<%= data.link %>">
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1" style="width: 150px;">Anahtar Kelimeler</span>
+                  <input type="text" class="form-control" name="keywords" value="<%= data.keywords  %>">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1" style="width: 150px;">Yazar</span>
+                  <input type="text" class="form-control" name="writer" value="<%= data.writer %>">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1" style="width: 150px;">Kategori</span>
+                  <select class="form-control select2" name="category" required>
+                    <option value="<%= data2.id %>" selected="selected"><%= data2.name %></option>
+                    <% for(let i=0; i<data1.length; i++) { %>
+                    <% if(data.category != data1[i].id) { %>
+                      <option value="<%= data1[i].id %>"><%= data1[i].name %></option>
+                    <% } %> 
+                    <% } %> 
+                  </select>
+                </div>
+              </div>
+            </div> <!-- /row -->
+            
+            <textarea id="summernote" name="text" required>
+              <%= data.text %>
+            </textarea>
+
+            <div class="control-area d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary mx-1">Gönder</button>
+              <button type="reset" class="btn btn-danger mx-1">Temizle</button>
+            </div>
+  
+          </div>
+        </form>
+        <!-- /.col-->
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <div class="footer" style="z-index: -1;">
+    <%- include('inc/footer') %> 
+  </div>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- Summernote -->
+<script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+<!-- CodeMirror -->
+<script src="../../plugins/codemirror/codemirror.js"></script>
+<script src="../../plugins/codemirror/mode/css/css.js"></script>
+<script src="../../plugins/codemirror/mode/xml/xml.js"></script>
+<script src="../../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('#summernote').summernote({
+      height: 200
+    })
+  })
+</script>
+</body>
+</html>
