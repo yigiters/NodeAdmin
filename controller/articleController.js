@@ -2,20 +2,6 @@ const Articles = require('../model/articlesModel')
 const Category = require('../model/categoryModel')
 const slugify = require('slugify') /* slugify('some string', '_') */
 
-const create_article = (req,res) => {
-
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
-
-    Articles.sequelize.sync().then(() => {
-        res.send('Table created successfully!')
-     }).catch((error) => {
-        console.error('Unable to create table : ', error)
-    })
-    }
-}
-
 const get_new_article = (req,res) => {
 
     if(req.session.status != '1') {
@@ -147,7 +133,6 @@ const post_edit_article = (req,res) => {
 }
 
 module.exports = {
-    create_article,
     get_new_article,
     post_new_article,
     get_list_article,

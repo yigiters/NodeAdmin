@@ -1,21 +1,6 @@
 const Category = require("../model/categoryModel")
 const Articles = require("../model/articlesModel")
 
-const create_category_table = (req,res) => {
-    
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
-
-    Category.sequelize.sync().then(() => {
-        console.log('Book table created successfully!')
-        res.redirect('/mypanel')
-     }).catch((error) => {
-        console.error('Unable to create table : ', error)
-     })
-   }
-}
-
 const new_category = (req,res) => {
 
     if(req.session.status != '1') {
@@ -23,11 +8,10 @@ const new_category = (req,res) => {
     } else {
 
     Category.create({
-        name: req.body.name
+        name: req.body.name,
+        image: req.body.image
     }).then(res => {
         console.log(res)
-    }).catch((error) => {
-        console.error('Failed to create a new record : ', error)
     })
 
     res.redirect('/list-category')
@@ -74,7 +58,7 @@ const func_category = (req,res) => {
     }
 
     if(req.body.func == 'update') {
-        Category.update({ name: req.body.name }, {
+        Category.update({ name: req.body.name, image: req.body.image }, {
             where: {
                 id: req.body.id
             }
@@ -86,7 +70,6 @@ const func_category = (req,res) => {
 }
 
 module.exports = {
-    create_category_table,
     new_category,
     list_category,
     func_category

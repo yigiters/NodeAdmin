@@ -63,7 +63,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <form method="post" action="/func-category">
               <div class="card-body">
                 <input type="hidden" name="id" value="<%= data[i].id %>">
-                <input type="text" name="name" value="<%= data[i].name %>">
+                <input type="text" class="my-2" name="name" value="<%= data[i].name %>">
+                <input type="text" name="image" value="<%= data[i].image %>">
               </div>
               <!-- /.card-body -->
               <div class="row" style="text-align: center;">

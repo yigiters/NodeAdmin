@@ -5,7 +5,11 @@ const Category = sequelize.define("category", {
     
     name: {
       type: DataTypes.TEXT,
+    },
+    image: {
+      type: DataTypes.TEXT,
     }
+    
  })
 
  module.exports = Category

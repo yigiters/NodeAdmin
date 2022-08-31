@@ -5,19 +5,6 @@ var randtoken = require('rand-token').generator({
     chars: '0-9',
   })
 
-  /* User table create */ 
-const create_user = (req,res) => {
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
-    User.sequelize.sync().then(() => {
-        res.send('Table created successfully!')
-     }).catch((error) => {
-        console.error('Unable to create table : ', error)
-    })
-}
-     
-}
 
 const new_user = (req,res) => {
 
@@ -30,8 +17,6 @@ const new_user = (req,res) => {
     let urpass = req.body.rpass
 
     if(upass == urpass ) {
-
-    /*res.send(name + " " + mail + " " + pass + " " + rpass)*/
 
     User.findOne({
         where: {
@@ -47,17 +32,17 @@ const new_user = (req,res) => {
             pass: upass
         })
 
-        res.render('panel-adduser', {msg: 'Kullanıcı Başarıyla Oluşturuldu!'})
+        res.render('panel-adduser', {msg: 'Kullanıcı Başarıyla Oluşturuldu!', auth: req.session.user})
 
         } else {
-            res.render('panel-adduser', {err: 'E-posta kullanımda!'})
+            res.render('panel-adduser', {err: 'E-posta kullanımda!', auth: req.session.user})
         }
     }).catch((error) => {
         console.error('Failed to retrieve data : ', error)
     })
 
     } else {
-        res.render('panel-adduser', {err: 'Şifre ve şifre tekrar uyuşmuyor'})
+        res.render('panel-adduser', {err: 'Şifre ve şifre tekrar uyuşmuyor', auth: req.session.user})
     }
  }
 }
@@ -164,7 +149,6 @@ const post_edit_user = (req,res) => {
 }
 
 module.exports = {
-    create_user,
     new_user,
     list_user,
     delete_user,
