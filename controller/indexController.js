@@ -1,6 +1,7 @@
 const User = require("../model/userModel")
 const Articles = require('../model/articlesModel')
 const Category = require('../model/categoryModel')
+const Meta = require('../model/blogMeta')
 
 const install = (req, res) => {
 
@@ -16,6 +17,15 @@ const install = (req, res) => {
         })
         Category.sequelize.sync().then(() => {
             console.log("Kategori tablosu oluşturuldu!")
+        })
+        Meta.sequelize.sync().then(() => {
+            console.log("Meta tablosu oluşturuldu!")
+            Meta.create({id: '1'})
+            Meta.create({id: '2'})
+            Meta.create({id: '3'})
+            Meta.create({id: '4'})
+            Meta.create({id: '5'})
+            Meta.create({id: '6'})
         })
 
         res.redirect('/login')

@@ -1,4 +1,5 @@
 const Articles = require('../model/articlesModel')
+const Meta = require('../model/blogMeta')
 const Category = require('../model/categoryModel')
 
 const all_articles = (req, res) => {
@@ -63,6 +64,18 @@ const higlight_post = (req,res) => {
 
 }
 
+const about_meta = (req,res) => {
+
+    Meta.findAll({
+        where: {
+            id: +req.query.id
+        }
+    }).then(result => {
+        res.send(result)
+    })
+
+}
+
 
 module.exports = {
     all_articles,
@@ -70,4 +83,5 @@ module.exports = {
     all_category,
     select_category,
     higlight_post,
+    about_meta,
 }
