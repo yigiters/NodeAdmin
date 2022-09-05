@@ -51,6 +51,16 @@ const select_category = (req, res) => {
     })
 }
 
+const category_name = (req,res) => {
+    Category.findAll({
+        where: {
+            id: +req.query.id
+        }
+    }).then(result => {
+        res.send(result)
+    })
+}
+
 const higlight_post = (req,res) => {
 
     Articles.findAll({
@@ -84,4 +94,5 @@ module.exports = {
     select_category,
     higlight_post,
     about_meta,
+    category_name,
 }
