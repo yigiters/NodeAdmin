@@ -18,6 +18,7 @@ const articleRoute = require('./routes/articleRoute')
 const apiRoute = require('./routes/apiRoute')
 const categoryRoute = require('./routes/categoryRoute')
 const metaRoute = require('./routes/metaRoute')
+const contactRoute = require('./routes/contactRoute')
 
 
 app.use(indexRoute)
@@ -26,3 +27,4 @@ app.use(articleRoute)
 app.use(apiRoute)
 app.use(categoryRoute)
 app.use(metaRoute)
+app.use(contactRoute)

@@ -2,6 +2,7 @@ const User = require("../model/userModel")
 const Articles = require('../model/articlesModel')
 const Category = require('../model/categoryModel')
 const Meta = require('../model/blogMeta')
+const Contact = require('../model/contactModel')
 
 const install = (req, res) => {
 
@@ -17,6 +18,9 @@ const install = (req, res) => {
         })
         Category.sequelize.sync().then(() => {
             console.log("Kategori tablosu oluşturuldu!")
+        })
+        Contact.sequelize.sync().then(() => {
+            console.log("İletişim Tablosu Oluşturuldu!")
         })
         Meta.sequelize.sync().then(() => {
             console.log("Meta tablosu oluşturuldu!")

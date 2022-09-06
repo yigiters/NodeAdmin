@@ -9,5 +9,6 @@ router.get('/api/category', apiController.select_category)
 router.get('/api/highlight', apiController.higlight_post)
 router.get('/api/meta', apiController.about_meta)
 router.get('/api/category/name', apiController.category_name)
+router.get('/api/contact', apiController.contact_form)
 
 module.exports = router

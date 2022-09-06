@@ -1,6 +1,7 @@
 const Articles = require('../model/articlesModel')
 const Meta = require('../model/blogMeta')
 const Category = require('../model/categoryModel')
+const Contact = require('../model/contactModel')
 
 const all_articles = (req, res) => {
 
@@ -26,9 +27,9 @@ const select_articles = (req, res) => {
     }).then(result => {
         Articles.update({ read: +result.read + 1 }, {
             where: {
-              id: result.id
+                id: result.id
             }
-          })
+        })
         res.send(result)
     })
 }
@@ -51,7 +52,7 @@ const select_category = (req, res) => {
     })
 }
 
-const category_name = (req,res) => {
+const category_name = (req, res) => {
     Category.findAll({
         where: {
             id: +req.query.id
@@ -61,7 +62,7 @@ const category_name = (req,res) => {
     })
 }
 
-const higlight_post = (req,res) => {
+const higlight_post = (req, res) => {
 
     Articles.findAll({
         limit: 1,
@@ -74,7 +75,7 @@ const higlight_post = (req,res) => {
 
 }
 
-const about_meta = (req,res) => {
+const about_meta = (req, res) => {
 
     Meta.findAll({
         where: {
@@ -83,6 +84,12 @@ const about_meta = (req,res) => {
     }).then(result => {
         res.send(result)
     })
+
+}
+
+const contact_form = (req, res) => {
+    Contact.create({ name: req.query.name, mail: req.query.mail, message: req.query.text, state: '0'})
+    res.status(200).json({ status: '200' })
 
 }
 
@@ -96,4 +103,5 @@ module.exports = {
     higlight_post,
     about_meta,
     category_name,
+    contact_form
 }
