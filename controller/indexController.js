@@ -26,6 +26,8 @@ const install = (req, res) => {
             Meta.create({id: '4'})
             Meta.create({id: '5'})
             Meta.create({id: '6'})
+            Meta.create({id: '7'})
+            Meta.create({id: '8'})
         })
 
         res.redirect('/login')

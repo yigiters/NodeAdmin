@@ -10,5 +10,7 @@ router.get('/privacy-page',  metaController.privacy_get)
 router.post('/privacy-page', metaController.privacy_post)
 router.get('/contact-page', metaController.contact_get)
 router.post('/contact-page', metaController.contact_post)
+router.get('/site-page', metaController.site_get)
+router.post('/site-page', metaController.site_post)
 
 module.exports = router

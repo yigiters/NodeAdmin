@@ -91,6 +91,31 @@ const contact_post = (req,res) => {
     res.redirect('/contact-page')
 }
 
+const site_get = (req,res) => {
+   
+    Meta.findAll().then(result => {
+        res.render('meta-site', {auth: req.session.data, hostname: result[6].value, description: result[7].value})
+    })
+
+}
+
+const site_post = (req,res) => {
+    
+    Meta.update({value: req.body.head}, {
+        where: {
+            id: 7
+        }
+    })
+
+    Meta.update({value: req.body.desc}, {
+        where: {
+            id: 8
+        }
+    })
+
+    res.redirect('/site-page')
+}
+
 module.exports = {
     about_get,
     about_post,
@@ -100,4 +125,6 @@ module.exports = {
     privacy_post,
     contact_get,
     contact_post,
+    site_get,
+    site_post
 }
