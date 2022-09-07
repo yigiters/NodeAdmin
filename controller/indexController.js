@@ -52,7 +52,21 @@ const admin_get = (req, res) => {
     if (req.session.status != '1') {
         res.redirect('/login')
     } else {
-        res.render('panel-index', { auth: req.session.user })
+        Contact.findAll({
+            where: {
+                state: 0
+            }
+        }).then(result => {
+            Articles.findAll().then(result1 => {
+                Category.findAll().then(result2 => {
+                    User.findAll().then(result3 => {
+                        res.render('panel-index', { auth: req.session.user, tmessage: result, tpost: result1, tcategory: result2, tuser: result3 })
+                    })
+                })
+            })
+    
+        })
+        
     }
 }
 

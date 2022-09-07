@@ -1,41 +1,52 @@
 const Contact = require('../model/contactModel')
 
-const contact_get = (req,res) => {
-
-    Contact.findAll().then(result => {
-        res.render('panel-contact', {auth: req.session.user, data: result})
-    })
+const contact_get = (req, res) => {
+    if (req.session.status != '1') {
+        res.redirect('/login')
+    } else {
+        Contact.findAll().then(result => {
+            res.render('panel-contact', { auth: req.session.user, data: result })
+        })
+    }
 
 }
 
-const contact_read = (req,res) => {
+const contact_read = (req, res) => {
+    if(req.session.status != '1') {
+        res.redirect('/login')
+    } else {
     Contact.findOne({
         where: {
             id: req.query.id
         }
     }).then(result => {
-    
-        Contact.update({state: '1'}, {
+
+        Contact.update({ state: '1' }, {
             where: {
                 id: req.query.id
             }
         })
-        if(result.state == 0) {
+        if (result.state == 0) {
             result1 = "Okunmadı"
         } else {
             result1 = "Okundu"
         }
-        res.render('panel-contact-read', {auth: req.session.user, data: result, state: result1})
+        res.render('panel-contact-read', { auth: req.session.user, data: result, state: result1 })
     })
 }
+}
 
-const contact_delete = (req,res) => {
+const contact_delete = (req, res) => {
+    if(req.session.status != '1') {
+        res.redirect('/login')
+    } else {
     Contact.destroy({
         where: {
             id: req.query.id
         }
     })
     res.redirect('/contact-form')
+}
 }
 
 module.exports = {

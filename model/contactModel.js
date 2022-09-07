@@ -3,14 +3,14 @@ const sequelize = require('./config')
 
 const Contact = sequelize.define("contact", {
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     mail: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       unique: true
     },
     message: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     state: {
         type: DataTypes.STRING,
