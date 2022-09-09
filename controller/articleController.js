@@ -3,24 +3,14 @@ const Category = require('../model/categoryModel')
 const slugify = require('slugify') /* slugify('some string', '_') */
 
 const get_new_article = (req,res) => {
-
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
-
     Category.findAll().then(result=> {
         res.render('panel-newpost', {data: result, auth: req.session.user})
     }).catch((error=> 
         console.error(error)    
     ))
-    }
 }
 
 const post_new_article = (req,res) => {
-
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
 
     ftitle = req.body.title
     fsubtitle = req.body.subtitle
@@ -50,28 +40,18 @@ const post_new_article = (req,res) => {
         console.error('Failed to create a new record : ', error)
     })
     res.redirect('new-post')
-    }
 }
 
 const get_list_article = (req,res) => {
-
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
 
     Articles.findAll().then(result => {
         res.render('panel-listpost', {data: result, auth: req.session.user})
     }).catch((error) => {
         console.error('Failed to retrieve data : ', error)
     })
-    }
 }
 
 const delete_article = (req,res) => {
-
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
 
     gid = req.query.id
 
@@ -86,14 +66,9 @@ const delete_article = (req,res) => {
     })
 
     res.redirect('list-post')
-    }
 }
 
 const get_edit_article = (req,res) => {
-
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
 
     let gid = req.query.id
 
@@ -114,14 +89,9 @@ const get_edit_article = (req,res) => {
         })    
     })
   })
-  }
 }
 
 const post_edit_article = (req,res) => {
-
-    if(req.session.status != '1') {
-        res.redirect('/login')
-    } else {
 
     Articles.update({ title: req.body.title.trim(), subtitle: req.body.subtitle.trim(), text: req.body.text.trim(), image: req.body.image.trim(), link: req.body.link.trim(), keywords: req.body.keywords.trim(), writer: req.body.writer.trim(), category: req.body.category.trim() }, {
         where: {
@@ -129,7 +99,6 @@ const post_edit_article = (req,res) => {
         }
       })
       res.redirect('/list-post')
-    }
 }
 
 module.exports = {

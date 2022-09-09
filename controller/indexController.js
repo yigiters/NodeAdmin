@@ -49,9 +49,7 @@ const default_user = (req,res) => {
 
 
 const admin_get = (req, res) => {
-    if (req.session.status != '1') {
-        res.redirect('/login')
-    } else {
+    
         Contact.findAll({
             where: {
                 state: 0
@@ -66,24 +64,18 @@ const admin_get = (req, res) => {
             })
     
         })
-        
-    }
 }
 
 const add_user = (req, res) => {
-    if (req.session.status != '1') {
-        res.redirect('/login')
-    } else {
+    
         res.render('panel-adduser', { auth: req.session.user })
-    }
+    
 }
 
 const get_login = (req, res) => {
-    if (req.session.status == 1) {
-        res.redirect('mypanel')
-    } else {
+    
         res.render('login')
-    }
+    
 }
 
 const post_login = (req, res) => {
@@ -108,14 +100,8 @@ const post_login = (req, res) => {
 
 const logout = (req, res) => {
 
-    if (req.session.status != '1') {
-        res.redirect('/login')
-    } else {
-
         req.session.destroy();
         res.redirect('/login')
-
-    }
 }
 
 module.exports = {
