@@ -25,9 +25,10 @@ const select_articles = (req, res) => {
             link: req.query.link
         }
     }).then(result => {
-        Articles.update({ read: +result.read + 1 }, {
+        read_data = +result.read
+        Articles.update({ read: read_data + 1 }, {
             where: {
-                id: result.id
+                id: +result.id
             }
         })
         res.send(result)
@@ -45,7 +46,7 @@ const select_category = (req, res) => {
 
     Articles.findAll({
         where: {
-            category: +req.query.id
+            category: req.query.id
         }
     }).then(result => {
         res.send(result)
@@ -55,7 +56,7 @@ const select_category = (req, res) => {
 const category_name = (req, res) => {
     Category.findAll({
         where: {
-            id: +req.query.id
+            id: req.query.id
         }
     }).then(result => {
         res.send(result)
