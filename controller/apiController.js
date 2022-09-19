@@ -7,7 +7,9 @@ const all_articles = (req, res) => {
 
     if (req.query._start) {
 
-        Articles.findAll({ offset: +req.query._start, limit: +req.query._limit }).then(result => {
+        Articles.findAll({ 
+            order:[['id', 'DESC']],
+            offset: +req.query._start, limit: +req.query._limit }).then(result => {
             res.send(result)
         })
 
