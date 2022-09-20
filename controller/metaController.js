@@ -107,7 +107,7 @@ const contact_post = (req, res) => {
 const site_get = (req, res) => {
 
     Meta.findAll().then(result => {
-        res.render('meta-site', { auth: req.session.data, hostname: result[6].value, description: result[7].value })
+        res.render('meta-site', { auth: req.session.user, hostname: result[6].value, description: result[7].value })
     })
 
 }
