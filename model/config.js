@@ -1,11 +1,11 @@
 const {Sequelize, DataTypes} = require("sequelize")
 
 const sequelize = new Sequelize(
-   'processs.env.DB_NAME',
-   'process.env.USER',
-   'process.env.PASS',
+   'node_test',
+   'root',
+   '',
     {
-      host: 'process.env.HOSTNAME',
+      host: 'localhost',
       dialect: 'mysql'
     }
   )
