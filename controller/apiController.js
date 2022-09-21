@@ -2,6 +2,7 @@ const Articles = require('../model/articlesModel')
 const Meta = require('../model/blogMeta')
 const Category = require('../model/categoryModel')
 const Contact = require('../model/contactModel')
+const { Op } = require("sequelize");
 
 const all_articles = (req, res) => {
 
@@ -96,6 +97,18 @@ const contact_form = (req, res) => {
 
 }
 
+const search = (req,res) => {
+    Articles.findAll({
+       where: {
+        text: {
+            [Op.like]: `%${req.query.kw}%`
+        }
+       }
+    }).then(result => {
+        res.send(result)
+    })
+}
+
 
 
 module.exports = {
@@ -106,5 +119,6 @@ module.exports = {
     higlight_post,
     about_meta,
     category_name,
-    contact_form
+    contact_form,
+    search
 }
